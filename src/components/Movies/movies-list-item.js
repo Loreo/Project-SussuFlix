@@ -62,8 +62,10 @@ class MoviesListItem extends Component {
       <Table.Row>
         <Table.Cell>
         <Card.Group>
-          <Card.Content>{this.renderAlreadySeen()}</Card.Content>
-          <Card.Content extra>{this.renderActionsSection()}</Card.Content>
+          <Card>
+            <Card.Content>{this.renderAlreadySeen()}</Card.Content>
+            <Card.Content extra>{this.renderActionsSection()}</Card.Content>
+          </Card>
         </Card.Group>
         </Table.Cell>
       </Table.Row>
