@@ -11,8 +11,7 @@ class MoviesList extends Component {
 
     return Lodash.map(this.props.movies, function(movie, index) {
       return <MoviesListItem key={index}
-                             name={movie.name}
-                             alreadySeen={movie.alreadySeen}
+                             {...movie}
                              {...props} // weird es6
       />
     });
@@ -20,7 +19,7 @@ class MoviesList extends Component {
 
   render() {
     return (
-      <Table definition>
+      <Table celled inverted selectable>
         <MoviesListHeader/>
         <Table.Body>
           {this.renderItems()}

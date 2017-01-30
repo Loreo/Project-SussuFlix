@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Lodash from 'lodash';
-import {Button, Table, Card} from 'semantic-ui-react';
+import {Button, Table, Card, Input} from 'semantic-ui-react';
 
 class MoviesListItem extends Component {
   constructor (props) {
@@ -20,20 +20,29 @@ class MoviesListItem extends Component {
     if(this.state.isEditing) {
       return (
         <form onSubmit={this.onSaveClick.bind(this)}>
-          <input type="text"
-                 defaultValue={this.props.name}
-                 ref="editInput"
-          />
+          <Input type="text"
+                 defaultValue={this.props.name}>
+            <input ref="editInput" />
+          </Input>
         </form>
       );
     }
 
     return (
-      <Card.Header>
-      <div style={nameStyle}
-          onClick={this.props.seenChange.bind(this, this.props.name)}
-      >{this.props.name}</div>
-      </Card.Header>
+      <Card.Content>
+        <Card.Header>
+          <div style={nameStyle}
+            onClick={this.props.seenChange.bind(this, this.props.name)}>
+          {this.props.name}
+          </div>
+        </Card.Header>
+        <Card.Meta>
+        {this.props.director}
+        </Card.Meta>
+        <Card.Description>
+          {this.props.synopsis}
+        </Card.Description>
+      </Card.Content>
     );
   }
 
@@ -63,7 +72,7 @@ class MoviesListItem extends Component {
         <Table.Cell>
         <Card.Group>
           <Card>
-            <Card.Content>{this.renderMoviesSection()}</Card.Content>
+            {this.renderMoviesSection()}
             <Card.Content extra>{this.renderActionsSection()}</Card.Content>
           </Card>
         </Card.Group>
