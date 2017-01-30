@@ -11,7 +11,7 @@ class MoviesListItem extends Component {
     };
   }
 
-  renderAlreadySeen() {
+  renderMoviesSection() {
     const nameStyle = {
       color: this.props.alreadySeen ? 'green' : 'red',
       cursor: 'pointer'
@@ -63,7 +63,7 @@ class MoviesListItem extends Component {
         <Table.Cell>
         <Card.Group>
           <Card>
-            <Card.Content>{this.renderAlreadySeen()}</Card.Content>
+            <Card.Content>{this.renderMoviesSection()}</Card.Content>
             <Card.Content extra>{this.renderActionsSection()}</Card.Content>
           </Card>
         </Card.Group>

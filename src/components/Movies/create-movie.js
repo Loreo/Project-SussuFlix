@@ -26,7 +26,6 @@ class CreateMovie extends Component {
       <form onSubmit={this.handleCreate.bind(this)}>
         <Input type="text"
                placeholder="Enter the movie's name"
-
         ><input ref="createInput"/></Input>
         <Button basic color='green'>Add movie !</Button>
         {this.renderError()}
