@@ -1,14 +1,37 @@
 import React, { Component } from 'react';
 import Lodash from 'lodash';
-import {Button, Input} from 'semantic-ui-react'
+import {Button, Form, Message} from 'semantic-ui-react'
 
 class CreateMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null
+      error: null,
+      formData: {}
     };
   }
+
+  handleSubmit = (e, { formData }) => {
+    e.preventDefault();
+    this.setState({ formData });
+    const movieName = formData.name;
+    const validate = this.validateName(movieName);
+
+    console.log(movieName);
+    console.log(this.props.createMovie);
+
+    if (validate) {
+      this.setState(
+        {
+          error: validate
+        }
+      );
+      return;
+    }
+
+    this.setState({error: null});
+    this.props.createMovie(formData);
+  };
 
   renderError() {
     if (!this.state.error) {
@@ -23,40 +46,22 @@ class CreateMovie extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleCreate.bind(this)}>
-        <Input type="text"
-               placeholder="Enter the movie's name"
-        ><input ref="createInput"/></Input>
-        <Button basic color='green'>Add movie !</Button>
+      <Form onSubmit={this.handleSubmit}>
+        <Form.Group widths="equal">
+          <Form.Input label="Name" name="name" placeholder="Name" required />
+          <Form.Input label="Director" name="director" placeholder="Director" />
+        </Form.Group>
+        <Form.TextArea name="synopsis" label="Synopsis" placeholder="This movie is about..." rows="3" />
+
+        <Button primary basic color='green' type="submit">Add movie !</Button>
+        <Message>
         {this.renderError()}
-      </form>
+        </Message>
+      </Form>
     );
   }
 
-  handleCreate(event) {
-    event.preventDefault(); //to prevent page from reloading
-
-    const movie = this.refs.createInput.value;
-    const validate = this.validateInput(movie);
-
-    console.log(movie);
-    console.log(this.props.createMovie);
-
-    if (validate) {
-      this.setState(
-        {
-          error: validate
-        }
-      );
-      return;
-    }
-
-    this.setState({error: null});
-    this.props.createMovie(movie);
-    this.refs.createInput.value = '';
-  }
-
-  validateInput(text) {
+  validateName(text) {
     if (!text) {
       return 'Enter the name of a movie';
     } else if (Lodash.find(this.props.movies, movie => movie.name === text)) {

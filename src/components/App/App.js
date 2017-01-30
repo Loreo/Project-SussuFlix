@@ -75,10 +75,7 @@ class App extends Component {
   }
 
   createMovie(movie) {
-    this.state.movies.push({
-      name: movie,
-      alreadySeen: false
-    });
+    this.state.movies.push(movie);
     this.setState({
       movies: this.state.movies
     });
