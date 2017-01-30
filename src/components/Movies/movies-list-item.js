@@ -1,15 +1,53 @@
 import React, { Component } from 'react';
 import Lodash from 'lodash';
-import {Button, Table, Card, Input} from 'semantic-ui-react';
+import {Button, Table, Card, Message, Form} from 'semantic-ui-react';
 
 class MoviesListItem extends Component {
   constructor (props) {
     super(props);
     this.state = {
       isEditing: false,
-      error: null
+      error: null,
+      formData: {}
     };
   }
+
+  handleSubmit = (event, { formData }) => {
+    event.preventDefault();
+    this.setState({ formData });
+    console.log(formData);
+    const oldMovieName = this.props.name;
+    const newMovieName = formData.name;
+    const validate = this.validateInput(newMovieName);
+
+    console.log(newMovieName);
+
+    if (validate) {
+      this.setState(
+        {
+          error: validate
+        }
+      );
+      return;
+    }
+
+    this.setState({error: null});
+    this.props.saveMovie(oldMovieName, formData);
+    this.setState(
+      {
+        isEditing: false
+      }
+    );
+  };
+
+  handleCancel = (event) => {
+    event.preventDefault();
+    this.setState(
+      {
+        isEditing: false
+      }
+    );
+  };
 
   renderMoviesSection() {
     const nameStyle = {
@@ -19,12 +57,19 @@ class MoviesListItem extends Component {
 
     if(this.state.isEditing) {
       return (
-        <form onSubmit={this.onSaveClick.bind(this)}>
-          <Input type="text"
-                 defaultValue={this.props.name}>
-            <input ref="editInput" />
-          </Input>
-        </form>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Input label="Name" name="name" placeholder="Name" required />
+          <Form.Input label="Director" name="director" placeholder="Director" />
+          <Form.TextArea name="synopsis" label="Synopsis" placeholder="This movie is about..." rows="3" />
+          <Form.Checkbox name="alreadySeen" label="I have already seen this movie." />
+          <div className='ui two buttons'>
+            <Button primary basic positive type="submit">Save</Button>
+            <Button basic negative onClick={this.handleCancel}>Cancel</Button>
+          </div>
+          <Message>
+            {this.renderError()}
+          </Message>
+        </Form>
       );
     }
 
@@ -32,12 +77,12 @@ class MoviesListItem extends Component {
       <Card.Content>
         <Card.Header>
           <div style={nameStyle}
-            onClick={this.props.seenChange.bind(this, this.props.name)}>
-          {this.props.name}
+               onClick={this.props.seenChange.bind(this, this.props.name)}>
+            {this.props.name}
           </div>
         </Card.Header>
         <Card.Meta>
-        {this.props.director}
+          {this.props.director}
         </Card.Meta>
         <Card.Description>
           {this.props.synopsis}
@@ -47,35 +92,28 @@ class MoviesListItem extends Component {
   }
 
   renderActionsSection() {
-    if(this.state.isEditing) {
+    if(!(this.state.isEditing)) {
       return (
         <div className='ui two buttons'>
-            <Button basic positive onClick={this.onSaveClick.bind(this)}>Save</Button>
-            <Button basic onClick={this.onCancelClick.bind(this)}>Cancel</Button>
-            {this.renderError()}
+          <Button basic color="blue" onClick={this.onEditClick.bind(this)}>Edit</Button>
+          <Button basic negative onClick={this.props.deleteMovie.bind(this, this.props.name)}>
+            Delete
+          </Button>
         </div>
       );
     }
-    return (
-      <div className='ui two buttons'>
-        <Button basic color="blue" onClick={this.onEditClick.bind(this)}>Edit</Button>
-        <Button basic negative onClick={this.props.deleteMovie.bind(this, this.props.name)}>
-          Delete
-        </Button>
-      </div>
-    );
   }
 
   render() {
     return (
       <Table.Row>
         <Table.Cell>
-        <Card.Group>
-          <Card>
-            {this.renderMoviesSection()}
-            <Card.Content extra>{this.renderActionsSection()}</Card.Content>
-          </Card>
-        </Card.Group>
+          <Card.Group>
+            <Card>
+              {this.renderMoviesSection()}
+              <Card.Content extra>{this.renderActionsSection()}</Card.Content>
+            </Card>
+          </Card.Group>
         </Table.Cell>
       </Table.Row>
     );
@@ -100,49 +138,15 @@ class MoviesListItem extends Component {
     );
   }
 
-  onCancelClick() {
-    this.setState(
-      {
-        isEditing: false
-      }
-    );
-  }
-
-  onSaveClick(event) {
-    event.preventDefault();
-    const oldMovie = this.props.name;
-    const newMovie = this.refs.editInput.value;
-    const validate = this.validateInput(newMovie);
-
-    console.log(newMovie);
-
-    if (validate) {
-        this.setState(
-            {
-                error: validate
-            }
-        );
-        return;
-    }
-
-    this.setState({error: null});
-    this.props.saveMovie(oldMovie, newMovie);
-    this.refs.editInput.value = this.props.name;
-    this.setState(
-      {
-        isEditing: false
-      }
-    );
-  }
 
   validateInput(text) {
-      if (!text) {
-          return 'Enter the name of a movie';
-      } else if (Lodash.find(this.props.movies, movie => movie.name === text)) {
-          return 'This movie is already in the list';
-      } else {
-          return null;
-      }
+    if (!text) {
+      return 'Enter the name of a movie';
+    } else if (Lodash.find(this.props.movies, movie => movie.name === text)) {
+      return 'This movie is already in the list';
+    } else {
+      return null;
+    }
   }
 
 

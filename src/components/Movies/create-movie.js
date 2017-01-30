@@ -14,6 +14,7 @@ class CreateMovie extends Component {
   handleSubmit = (e, { formData }) => {
     e.preventDefault();
     this.setState({ formData });
+    console.log(formData);
     const movieName = formData.name;
     const validate = this.validateName(movieName);
 

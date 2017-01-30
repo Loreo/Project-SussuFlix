@@ -81,14 +81,22 @@ class App extends Component {
     });
   }
 
-  saveMovie(oldMovie, newMovie){
-    const selectedMovie = Lodash.find(this.state.movies, function(movie) {
-      return movie.name === oldMovie
+  saveMovie(oldMovieName, newMovie){
+    console.log(oldMovieName);
+    console.log("New Movie : ");
+    console.log(newMovie);
+    let moviesName = this.state.movies.map(movie => {
+      return movie.name;
     });
-    selectedMovie.name = newMovie;
-    this.setState({
-      movies: this.state.movies
-    });
+    const indexFilm = moviesName.indexOf(oldMovieName);
+
+    if (indexFilm) {
+      const movies = this.state.movies;
+      movies[indexFilm] = newMovie;
+      this.setState({
+        movies: this.state.movies
+      })
+    }
   }
 
   deleteMovie(movieToDelete) {
