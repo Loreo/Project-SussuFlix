@@ -27,7 +27,7 @@ class CreateMovie extends Component {
                placeholder="Enter the movie's name"
                ref="createInput"
         />
-        <button>Add movie !</button>
+        <button class="ui button">Add movie !</button>
         {this.renderError()}
       </form>
     );
