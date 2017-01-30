@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Lodash from 'lodash';
-import {Button, Form, Message} from 'semantic-ui-react'
+import {Button, Form, Message } from 'semantic-ui-react'
 
 class CreateMovie extends Component {
   constructor(props) {
@@ -52,6 +52,7 @@ class CreateMovie extends Component {
           <Form.Input label="Director" name="director" placeholder="Director" />
         </Form.Group>
         <Form.TextArea name="synopsis" label="Synopsis" placeholder="This movie is about..." rows="3" />
+        <Form.Checkbox name="alreadySeen" label="I have already seen this movie." />
 
         <Button primary basic color='green' type="submit">Add movie !</Button>
         <Message>
