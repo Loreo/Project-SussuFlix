@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Lodash from 'lodash';
+import {Button, Input} from 'semantic-ui-react'
 
 class CreateMovie extends Component {
   constructor(props) {
@@ -23,11 +24,11 @@ class CreateMovie extends Component {
   render() {
     return (
       <form onSubmit={this.handleCreate.bind(this)}>
-        <input type="text"
+        <Input type="text"
                placeholder="Enter the movie's name"
                ref="createInput"
         />
-        <button class="ui button">Add movie !</button>
+        <Button basic color='green'>Add movie !</Button>
         {this.renderError()}
       </form>
     );

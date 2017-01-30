@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Lodash from 'lodash';
-import logo from '../../logo.svg';
-import '../../App.css';
+//import logo from '../../logo.svg';
+//import '../../App.css';
 import MoviesList from '../Movies/movies-list';
 import CreateMovie from '../Movies/create-movie';
 
@@ -28,21 +28,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>My Movie List</h2>
-        </div>
-        <p className="App-intro">
-          <CreateMovie createMovie={this.createMovie.bind(this)}
-                       movies={this.state.movies}
-          />
-          <MoviesList movies={this.state.movies}
-                      seenChange={this.seenChange.bind(this)}
-                      saveMovie={this.saveMovie.bind(this)}
-                      deleteMovie={this.deleteMovie.bind(this)}
-          />
-        </p>
+      <div class="ui container">
+        <CreateMovie createMovie={this.createMovie.bind(this)}
+                     movies={this.state.movies}
+        />
+        <MoviesList movies={this.state.movies}
+                    seenChange={this.seenChange.bind(this)}
+                    saveMovie={this.saveMovie.bind(this)}
+                    deleteMovie={this.deleteMovie.bind(this)}
+        />
       </div>
     );
   }

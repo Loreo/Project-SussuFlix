@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Lodash from 'lodash';
+import {Button} from 'semantic-ui-react'
 
 class MoviesListItem extends Component {
   constructor (props) {
@@ -49,12 +50,13 @@ class MoviesListItem extends Component {
       );
     }
     return (
-      <td>
-        <button onClick={this.onEditClick.bind(this)}>Edit</button>
-        <button onClick={this.props.deleteMovie.bind(this, this.props.name)}>
+      <Button.Group>
+        <Button basic color="blue" onClick={this.onEditClick.bind(this)}>Edit</Button>
+        <Button.Or/>
+        <Button basic negative onClick={this.props.deleteMovie.bind(this, this.props.name)}>
           Delete
-        </button>
-      </td>
+        </Button>
+      </Button.Group>
     );
   }
 
