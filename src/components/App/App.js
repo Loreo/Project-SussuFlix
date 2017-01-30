@@ -28,7 +28,7 @@ class App extends Component {
 
   render() {
     return (
-      <div class="ui container">
+      <div>
         <CreateMovie createMovie={this.createMovie.bind(this)}
                      movies={this.state.movies}
         />

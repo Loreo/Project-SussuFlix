@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Lodash from 'lodash';
-import {Button} from 'semantic-ui-react'
+import {Button, Table, Card} from 'semantic-ui-react';
 
 class MoviesListItem extends Component {
   constructor (props) {
@@ -19,53 +19,54 @@ class MoviesListItem extends Component {
 
     if(this.state.isEditing) {
       return (
-        <td>
-          <form onSubmit={this.onSaveClick.bind(this)}>
-            <input type="text"
-                   defaultValue={this.props.name}
-                   ref="editInput"
-            />
-          </form>
-        </td>
+        <form onSubmit={this.onSaveClick.bind(this)}>
+          <input type="text"
+                 defaultValue={this.props.name}
+                 ref="editInput"
+          />
+        </form>
       );
     }
 
     return (
-      <td style={nameStyle}
+      <Card.Header>
+      <div style={nameStyle}
           onClick={this.props.seenChange.bind(this, this.props.name)}
-      >{this.props.name}</td>
+      >{this.props.name}</div>
+      </Card.Header>
     );
   }
 
   renderActionsSection() {
     if(this.state.isEditing) {
       return (
-        <div>
-          <td>
-            <button onClick={this.onSaveClick.bind(this)}>Save</button>
-            <button onClick={this.onCancelClick.bind(this)}>Cancel</button>
-          </td>
-          {this.renderError()}
+        <div className='ui two buttons'>
+            <Button basic positive onClick={this.onSaveClick.bind(this)}>Save</Button>
+            <Button basic onClick={this.onCancelClick.bind(this)}>Cancel</Button>
+            {this.renderError()}
         </div>
       );
     }
     return (
-      <Button.Group>
+      <div className='ui two buttons'>
         <Button basic color="blue" onClick={this.onEditClick.bind(this)}>Edit</Button>
-        <Button.Or/>
         <Button basic negative onClick={this.props.deleteMovie.bind(this, this.props.name)}>
           Delete
         </Button>
-      </Button.Group>
+      </div>
     );
   }
 
   render() {
     return (
-      <tr>
-        {this.renderAlreadySeen()}
-        {this.renderActionsSection()}
-      </tr>
+      <Table.Row>
+        <Table.Cell>
+        <Card.Group>
+          <Card.Content>{this.renderAlreadySeen()}</Card.Content>
+          <Card.Content extra>{this.renderActionsSection()}</Card.Content>
+        </Card.Group>
+        </Table.Cell>
+      </Table.Row>
     );
   }
 

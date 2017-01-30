@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Lodash from 'lodash';
 import MoviesListHeader from '../Header/movies-list-header'
 import MoviesListItem from './movies-list-item';
+import { Table } from 'semantic-ui-react';
 
 class MoviesList extends Component {
   renderItems() {
@@ -19,12 +20,12 @@ class MoviesList extends Component {
 
   render() {
     return (
-      <table>
+      <Table definition>
         <MoviesListHeader/>
-        <tbody>
+        <Table.Body>
           {this.renderItems()}
-        </tbody>
-      </table>
+        </Table.Body>
+      </Table>
     );
   }
 }

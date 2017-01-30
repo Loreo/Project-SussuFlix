@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+import { Table } from 'semantic-ui-react';
 
 class MoviesListHeader extends Component {
   render() {
     return (
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Films</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
     );
   }
 }
