@@ -5,38 +5,8 @@ import Lodash from 'lodash';
 import MoviesList from '../Movies/movies-list';
 import CreateMovie from '../Movies/create-movie';
 
-const movies = [
-  {
-    name: "Inception",
-    director: "Christopher Nolan",
-    synopsis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
-    "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea " +
-    "commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
-    "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est " +
-    "laborum.",
-    alreadySeen: true
-  },
-  {
-    name: "LaLaLand",
-    director: "Unknown",
-    synopsis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
-    "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea " +
-    "commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
-    "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est " +
-    "laborum.",
-    alreadySeen: false
-  },
-  {
-    name: "La Cité de la Peur",
-    director: "Alain Berbérian",
-    synopsis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
-    "dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea " +
-    "commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla " +
-    "pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est " +
-    "laborum.",
-    alreadySeen: false
-  }
-];
+
+const movies = require('../../../public/Database.json');
 
 
 class App extends Component {
@@ -85,18 +55,23 @@ class App extends Component {
     console.log(oldMovieName);
     console.log("New Movie : ");
     console.log(newMovie);
-    let moviesName = this.state.movies.map(movie => {
-      return movie.name;
-    });
-    const indexFilm = moviesName.indexOf(oldMovieName);
 
-    if (indexFilm) {
-      const movies = this.state.movies;
-      movies[indexFilm] = newMovie;
-      this.setState({
-        movies: this.state.movies
-      })
+    const selectedMovie = Lodash.find(this.state.movies, (movie) => {
+      return movie.name === oldMovieName;
+    });
+
+    for (let key in selectedMovie) {
+      if (selectedMovie.hasOwnProperty(key)) {
+        console.log(key + " -> " + selectedMovie[key]);
+        if(newMovie.hasOwnProperty(key)) {
+          selectedMovie[key] = newMovie[key];
+        }
+      }
     }
+
+    this.setState({
+      movies: this.state.movies
+    })
   }
 
   deleteMovie(movieToDelete) {
