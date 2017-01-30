@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import Lodash from 'lodash';
 
 class MoviesListItem extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      isEditing: false
+      isEditing: false,
+      error: null
     };
   }
 
@@ -37,10 +39,13 @@ class MoviesListItem extends Component {
   renderActionsSection() {
     if(this.state.isEditing) {
       return (
-        <td>
-          <button onClick={this.onSaveClick.bind(this)}>Save</button>
-          <button onClick={this.onCancelClick.bind(this)}>Cancel</button>
-        </td>
+        <div>
+          <td>
+            <button onClick={this.onSaveClick.bind(this)}>Save</button>
+            <button onClick={this.onCancelClick.bind(this)}>Cancel</button>
+          </td>
+          {this.renderError()}
+        </div>
       );
     }
     return (
@@ -60,6 +65,17 @@ class MoviesListItem extends Component {
         {this.renderActionsSection()}
       </tr>
     );
+  }
+
+  renderError() {
+    if (!this.state.error) {
+      return null;
+    }
+    return (
+      <div style={{color: 'red'}}>
+        {this.state.error}
+      </div>
+    )
   }
 
   onEditClick() {
@@ -82,13 +98,40 @@ class MoviesListItem extends Component {
     event.preventDefault();
     const oldMovie = this.props.name;
     const newMovie = this.refs.editInput.value;
+    const validate = this.validateInput(newMovie);
+
+    console.log(newMovie);
+
+    if (validate) {
+        this.setState(
+            {
+                error: validate
+            }
+        );
+        return;
+    }
+
+    this.setState({error: null});
     this.props.saveMovie(oldMovie, newMovie);
+    this.refs.editInput.value = this.props.name;
     this.setState(
       {
         isEditing: false
       }
     );
   }
+
+  validateInput(text) {
+      if (!text) {
+          return 'Enter the name of a movie';
+      } else if (Lodash.find(this.props.movies, movie => movie.name === text)) {
+          return 'This movie is already in the list';
+      } else {
+          return null;
+      }
+  }
+
+
 }
 
 export default MoviesListItem;
