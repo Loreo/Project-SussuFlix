@@ -29,7 +29,6 @@ export default function auth(state = initialState, action) {
         return {
           ...state, authenticated: true
         };
-
       }
       else return state;
     case "SIGN_OUT_USER":

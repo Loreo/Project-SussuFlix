@@ -6,7 +6,6 @@ import { Table } from 'semantic-ui-react';
 
 class MoviesList extends Component {
   renderItems() {
-    // We don't need to pass 'movies' props to MovieListItem
     const props = this.props;
 
     return Lodash.map(this.props.movies, function(movie, index) {

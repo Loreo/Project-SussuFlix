@@ -3,7 +3,6 @@ import { Menu, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-
 class AppMenu extends Component {
   state = {};
 
@@ -17,7 +16,6 @@ class AppMenu extends Component {
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name });
-
   };
 
   render() {
@@ -26,19 +24,17 @@ class AppMenu extends Component {
     let logMenu = null;
 
     if(!this.props.authenticated) {
-      logMenu = <Menu.Item
-        name='login'
-        as={Link}
-        to="login"
-        active={activeItem === 'login'}
-        onClick={this.handleItemClick} />
+      logMenu = <Menu.Item name='login'
+                           as={Link}
+                           to="login"
+                           active={activeItem === 'login'}
+                           onClick={this.handleItemClick} />
     } else {
-      logMenu = <Menu.Item
-        name='logout'
-        as={Link}
-        to="logout"
-        active={activeItem === 'logout'}
-        onClick={this.handleItemClick} />
+      logMenu = <Menu.Item name='logout'
+                           as={Link}
+                           to="logout"
+                           active={activeItem === 'logout'}
+                           onClick={this.handleItemClick} />
     }
 
     return(
@@ -74,6 +70,5 @@ const mapDispatchToProps = (dispatch) => ({
     })
   }
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppMenu);

@@ -16,7 +16,6 @@ import reducer from '../../reducers/index';
 const store = createStore(reducer);
 
 export default class Root extends React.Component {
-
   render(){
     return (
       <Provider store={store}>

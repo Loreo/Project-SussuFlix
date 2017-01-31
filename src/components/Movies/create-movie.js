@@ -52,12 +52,15 @@ class CreateMovie extends Component {
           <Form.Input label="Name" name="name" placeholder="Name" required />
           <Form.Input label="Director" name="director" placeholder="Director" />
         </Form.Group>
-        <Form.TextArea name="synopsis" label="Synopsis" placeholder="This movie is about..." rows="3" />
-        <Form.Input label="Id Youtube Trailer" name="trailerLink" placeholder="Enter the youtube link" />
-        <Form.Checkbox name="alreadySeen" label="I have already seen this movie." />
+        <Form.TextArea name="synopsis" label="Synopsis"
+                       placeholder="This movie is about..." rows="3" />
+        <Form.Input label="Id Youtube Trailer" name="trailerLink"
+                    placeholder="Enter the youtube link" />
+        <Form.Checkbox name="alreadySeen"
+                       label="I have already seen this movie." />
         <Button primary basic color='green' type="submit">Add movie !</Button>
         <Message>
-        {this.renderError()}
+          {this.renderError()}
         </Message>
       </Form>
     );

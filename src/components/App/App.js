@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AppMenu from 'components/Menu/menu';
 import {connect} from 'react-redux';
 
-
 class App extends React.Component {
   render(){
     return (

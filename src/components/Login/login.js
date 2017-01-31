@@ -11,7 +11,6 @@ class Login extends React.Component {
     };
   }
 
-
   handleChange(e) {
     this.setState({[e.target.name]: e.target.value});
   }
@@ -19,7 +18,6 @@ class Login extends React.Component {
   login(e) {
     e.preventDefault();
     this.props.login(this.state.user, this.state.password);
-
   }
 
   render() {
@@ -27,10 +25,11 @@ class Login extends React.Component {
       container : {
         marginTop : "10px",
       }
-    }
+    };
 
     return (
-      <div className="ui middle aligned center aligned grid" style={loginStyle.container}>
+      <div className="ui middle aligned center aligned grid"
+           style={loginStyle.container}>
         <Form>
           <Form.Field>
             <Input type="text" name="user" value={this.state.user}
@@ -48,7 +47,6 @@ class Login extends React.Component {
     );
   }
 }
-
 
 const mapStateToProps = state => ({
   authenticated: state.auth.authenticated

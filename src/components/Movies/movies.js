@@ -7,26 +7,28 @@ const movies = [
   {
     "name": "Inception",
     "director": "Christopher Nolan",
-    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+    "sed do eiusmod tempor incididunt ut labore",
     "trailerLink":"https://www.youtube.com/watch?v=B4nIVh1yvvc",
     "alreadySeen": true
   },
   {
     "name": "LaLaLand",
     "director": "Unknown",
-    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+    "sed do eiusmod tempor incididunt ut labore",
     "trailerLink": "https://www.youtube.com/watch?v=0pdqf4P9MB8",
     "alreadySeen": false
   },
   {
     "name": "La Cité de la Peur",
     "director": "Alain Berbérian",
-    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
+    "sed do eiusmod tempor incididunt ut labore",
     "trailerLink": "https://www.youtube.com/watch?v=CItygwB9mfY",
     "alreadySeen": false
   }
 ];
-
 
 class Movies extends React.Component {
   constructor(props) {
@@ -53,8 +55,6 @@ class Movies extends React.Component {
       </div>
     )
   }
-
-
 
   seenChange(name) {
     const selectedMovie = Lodash.find(this.state.movies, function(movie) {

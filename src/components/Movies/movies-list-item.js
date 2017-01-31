@@ -54,7 +54,8 @@ class MoviesListItem extends Component {
       return "dQw4w9WgXcQ";
     }
     let ID = '';
-    let url = link.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+    let url = link.replace(/(>|<)/gi,'')
+      .split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
     if(url[2] !== undefined) {
       ID = url[2].split(/[^0-9a-z_\-]/i);
       ID = ID[0];
@@ -64,7 +65,6 @@ class MoviesListItem extends Component {
     }
     return ID;
   };
-
 
   renderMoviesSection() {
     const nameStyle = {
@@ -77,8 +77,10 @@ class MoviesListItem extends Component {
         <Form onSubmit={this.handleSubmit}>
           <Form.Input label="Name" name="name" placeholder="Name" required />
           <Form.Input label="Director" name="director" placeholder="Director" />
-          <Form.TextArea name="synopsis" label="Synopsis" placeholder="This movie is about..." rows="3" />
-          <Form.Checkbox name="alreadySeen" label="I have already seen this movie." />
+          <Form.TextArea name="synopsis" label="Synopsis"
+                         placeholder="This movie is about..." rows="3" />
+          <Form.Checkbox name="alreadySeen"
+                         label="I have already seen this movie." />
           <div className='ui two buttons'>
             <Button primary basic positive type="submit">Save</Button>
             <Button basic negative onClick={this.handleCancel}>Cancel</Button>
@@ -102,12 +104,11 @@ class MoviesListItem extends Component {
         </Card.Meta>
         <Card.Description>
           {this.props.synopsis}
-          <br>
-          </br>
+          <br/>
           <Embed
-          id={this.convertLinkToID(this.props.trailerLink)}
-          placeholder='http://semantic-ui.com/images/image-16by9.png'
-          source='youtube'
+            id={this.convertLinkToID(this.props.trailerLink)}
+            placeholder='http://semantic-ui.com/images/image-16by9.png'
+            source='youtube'
           />
         </Card.Description>
       </Card.Content>
@@ -118,8 +119,10 @@ class MoviesListItem extends Component {
     if(!(this.state.isEditing)) {
       return (
         <div className='ui two buttons'>
-          <Button basic color="blue" onClick={this.onEditClick.bind(this)}>Edit</Button>
-          <Button basic negative onClick={this.props.deleteMovie.bind(this, this.props.name)}>
+          <Button basic color="blue"
+                  onClick={this.onEditClick.bind(this)}>Edit</Button>
+          <Button basic negative
+                  onClick={this.props.deleteMovie.bind(this, this.props.name)}>
             Delete
           </Button>
         </div>
@@ -161,7 +164,6 @@ class MoviesListItem extends Component {
     );
   }
 
-
   validateInput(text) {
     if (!text) {
       return 'Enter the name of a movie';
@@ -171,8 +173,6 @@ class MoviesListItem extends Component {
       return null;
     }
   }
-
-
 }
 
 export default MoviesListItem;
