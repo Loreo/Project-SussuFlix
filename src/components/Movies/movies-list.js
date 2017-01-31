@@ -11,7 +11,7 @@ class MoviesList extends Component {
 
     return Lodash.map(this.props.movies, function(movie, index) {
       return <MoviesListItem key={index}
-                             {...movie}
+                             {...movie} // name = {this.props.name}
                              {...props} // weird es6
       />
     });
