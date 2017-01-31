@@ -20,4 +20,4 @@ Open a terminal
 
 On your web browser
 ---------
-*   [localhost:3000](http://localhost:3000)
+*   [localhost:8080](http://localhost:8080)
