@@ -44,11 +44,6 @@ class AppMenu extends Component {
     return(
       <Segment inverted>
         <Menu inverted pointing secondary>
-          <Menu.Item name='home'
-                     as={Link}
-                     to="home"
-                     active={activeItem === 'home'}
-                     onClick={this.handleItemClick} />
           <Menu.Item name='movies'
                      as={Link}
                      to="movies"
