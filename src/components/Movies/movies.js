@@ -17,7 +17,7 @@ class Movies extends React.Component {
 
   render() {
     return (
-      <p>
+      <div>
         <CreateMovie createMovie={this.createMovie.bind(this)}
                      movies={this.state.movies}
         />
@@ -26,7 +26,7 @@ class Movies extends React.Component {
                     saveMovie={this.saveMovie.bind(this)}
                     deleteMovie={this.deleteMovie.bind(this)}
         />
-      </p>
+      </div>
     )
   }
 
