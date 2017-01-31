@@ -49,6 +49,20 @@ class MoviesListItem extends Component {
     );
   };
 
+  convertLinkToID = (link) => {
+    var ID = '';
+    let url = link.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+    if(url[2] !== undefined) {
+      ID = url[2].split(/[^0-9a-z_\-]/i);
+      ID = ID[0];
+    }
+    else {
+      ID = url;
+    }
+    return ID;
+  };
+
+
   renderMoviesSection() {
     const nameStyle = {
       color: this.props.alreadySeen ? 'green' : 'red',
@@ -89,7 +103,7 @@ class MoviesListItem extends Component {
           <br>
           </br>
           <Embed
-          id={this.props.trailerLink}
+          id={this.convertLinkToID(this.props.trailerLink)}
           placeholder='http://semantic-ui.com/images/image-16by9.png'
           source='youtube'
           />
