@@ -50,7 +50,10 @@ class MoviesListItem extends Component {
   };
 
   convertLinkToID = (link) => {
-    var ID = '';
+    if(link === '' || link === null) {
+      return "dQw4w9WgXcQ";
+    }
+    let ID = '';
     let url = link.replace(/(>|<)/gi,'').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
     if(url[2] !== undefined) {
       ID = url[2].split(/[^0-9a-z_\-]/i);
@@ -86,7 +89,6 @@ class MoviesListItem extends Component {
         </Form>
       );
     }
-
     return (
       <Card.Content>
         <Card.Header>
