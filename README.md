@@ -1,4 +1,4 @@
-# React Movies
+# Project SussuFlix
 _By [Aurélien LABAUTE](https://github.com/Loreo), [Louise RAPILLY](https://github.com/louiserply) and [Matthieu CLEMENT](https://github.com/Matthiosso)_
 
 How to run ?
