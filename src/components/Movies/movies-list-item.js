@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Lodash from 'lodash';
-import {Button, Table, Card, Message, Form} from 'semantic-ui-react';
+import {Button, Table, Card, Message, Form, Embed} from 'semantic-ui-react';
 
 class MoviesListItem extends Component {
   constructor (props) {
@@ -86,6 +86,13 @@ class MoviesListItem extends Component {
         </Card.Meta>
         <Card.Description>
           {this.props.synopsis}
+          <br>
+          </br>
+          <Embed
+          id={this.props.trailerLink}
+          placeholder='http://semantic-ui.com/images/image-16by9.png'
+          source='youtube'
+          />
         </Card.Description>
       </Card.Content>
     );

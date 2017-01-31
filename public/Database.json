@@ -3,18 +3,21 @@
     "name": "Inception",
     "director": "Christopher Nolan",
     "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "trailerLink":"B4nIVh1yvvc",
     "alreadySeen": true
   },
   {
     "name": "LaLaLand",
     "director": "Unknown",
     "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "trailerLink": "0pdqf4P9MB8",
     "alreadySeen": false
   },
   {
     "name": "La Cité de la Peur",
     "director": "Alain Berbérian",
     "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "trailerLink": "CItygwB9mfY",
     "alreadySeen": false
   }
 ]
