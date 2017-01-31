@@ -1,4 +1,17 @@
-const users = require('../../public/DatabaseUsers.json');
+const users = [
+  {
+    "user": "matthiosso",
+    "password": "92"
+  },
+  {
+    "user": "loreo",
+    "password": "92"
+  },
+  {
+    "user": "loulou",
+    "password": "94"
+  }
+];
 
 module.exports = {
 

@@ -3,7 +3,29 @@ import Lodash from 'lodash';
 import MoviesList from './movies-list';
 import CreateMovie from './create-movie';
 
-const movies = require('../../../public/DatabaseMovies.json');
+const movies = [
+  {
+    "name": "Inception",
+    "director": "Christopher Nolan",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "trailerLink":"https://www.youtube.com/watch?v=B4nIVh1yvvc",
+    "alreadySeen": true
+  },
+  {
+    "name": "LaLaLand",
+    "director": "Unknown",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "trailerLink": "https://www.youtube.com/watch?v=0pdqf4P9MB8",
+    "alreadySeen": false
+  },
+  {
+    "name": "La Cité de la Peur",
+    "director": "Alain Berbérian",
+    "synopsis": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
+    "trailerLink": "https://www.youtube.com/watch?v=CItygwB9mfY",
+    "alreadySeen": false
+  }
+];
 
 
 class Movies extends React.Component {
@@ -16,6 +38,8 @@ class Movies extends React.Component {
   }
 
   render() {
+    console.log("List of movies : ");
+    console.log(JSON.stringify(this.state.movies));
     return (
       <div>
         <CreateMovie createMovie={this.createMovie.bind(this)}
