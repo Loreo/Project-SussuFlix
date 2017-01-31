@@ -13,7 +13,8 @@ You will need Npm and Node on your computer :
 Open a terminal
 ---------------
 
-    git clone https://github.com/Loreo/React-Movies.git
+    git clone https://github.com/Loreo/Project-SussuFlix.git
+    cd Project-SussuFlix
     npm install
     npm start
 
